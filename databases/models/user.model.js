@@ -4,6 +4,7 @@ const userSchema = new mongoose.Schema({
     name:String,
     email:String,
     password:String,
+    rePassword:String,
     age : {
         type:Number,
         min :[10,'too young'],
