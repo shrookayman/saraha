@@ -10,15 +10,18 @@ import msgRouter from './src/modules/message/message.routes.js';
 import { AppError } from './src/utils/AppError.js';
 import { globalErr } from './src/middleware/globalErrMiddleware.js';
 import dotenv from "dotenv";
+import phototRouter from './src/modules/photos/photos.controller.js';
+
 const app = express();
 dotenv.config();
 app.use(express.json())
 app.use(userRouter)
 app.use(msgRouter)
+app.use(phototRouter)
+app.use('/' , express.static('uploads'))
 
 
-
-dbConnection()
+dbConnection() 
 
 app.use('*', (req,res,next)=>{
     next(new AppError(`not found  : ${req.originalUrl}` , 404))
